@@ -1,0 +1,21 @@
+permissions:
+  contents: read
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+name: check
+jobs:
+  fmt:
+    name: fmt
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Install rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          components: rustfmt
+      - name: cargo fmt --check --all
+        run: cargo fmt --check --all
