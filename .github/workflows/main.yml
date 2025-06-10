@@ -9,12 +9,10 @@ name: check
 jobs:
   fmt:
     name: fmt
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          submodules: true
-      - name: Install rust
-        uses: dtolnay/rust-toolchain@master
+      - uses: dtolnay/rust-toolchain@master
         with:
           components: rustfmt
       - name: cargo fmt --check --all
